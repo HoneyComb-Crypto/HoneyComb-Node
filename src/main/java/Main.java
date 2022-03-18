@@ -93,6 +93,12 @@ public class Main {
         }
         inputReader.close();
         Main.blockchainSyncThread.interrupt();
+        try {
+            Main.blockchainSyncThread.join();
+        } catch (InterruptedException e) {
+            System.out.print("Failed to wait for thread to exit! See stack trace below:\n\n");
+            e.printStackTrace();
+        }
         System.out.println("Goodbye!");
     }
 
